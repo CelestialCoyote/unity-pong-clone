@@ -5,6 +5,7 @@ using UnityEngine;
 public class CollisionController : MonoBehaviour
 {
     public BallMovement ballMovement;
+	public ScoreController scoreController;
 
 	void BounceFromPaddle(Collision2D collision)
 	{
@@ -38,10 +39,14 @@ public class CollisionController : MonoBehaviour
 		else if (collision.gameObject.name == "WallLeft")
 		{
 			Debug.Log("Collision with WallLeft");
+			this.scoreController.GoalPlayerTwo();
+			StartCoroutine(this.ballMovement.StartBall(true));
 		}
 		else if (collision.gameObject.name == "WallRight")
 		{
 			Debug.Log("Collision with WallRight");
+			this.scoreController.GoalPlayerOne();
+			StartCoroutine(this.ballMovement.StartBall(false));
 		}
 	}
 }

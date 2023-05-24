@@ -1457,6 +1457,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1545179470}
+  - component: {fileID: 1545179471}
   m_Layer: 0
   m_Name: Field
   m_TagString: Untagged
@@ -1483,6 +1484,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1545179471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545179469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53c9974eb4f374f28b528bbf0ae49ae2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreTextPlayerOne: {fileID: 1915679863}
+  scoreTextPlayerTwo: {fileID: 1707522696}
+  goalToWin: 3
 --- !u!1 &1707522696
 GameObject:
   m_ObjectHideFlags: 0
@@ -1670,7 +1686,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1729769948
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1725,6 +1741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballMovement: {fileID: 1729769949}
+  scoreController: {fileID: 1545179471}
 --- !u!1 &1738145671
 GameObject:
   m_ObjectHideFlags: 0
