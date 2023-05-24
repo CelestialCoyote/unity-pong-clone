@@ -4,49 +4,50 @@ using UnityEngine;
 
 public class CollisionController : MonoBehaviour
 {
-    public BallMovement ballMovement;
-	public ScoreController scoreController;
+	public BallMovement ballMovement;
+    public ScoreController scoreController;
 
-	void BounceFromPaddle(Collision2D collision)
+    void BounceFromPaddle(Collision2D c)
 	{
-		Vector3 ballPosition = this.transform.position;
-		Vector3 paddlePosition = collision.gameObject.transform.position;
+        Vector3 ballPosition = this.transform.position;
+        Vector3 paddlePosition = c.gameObject.transform.position;
 
-		float paddleHeight = collision.collider.bounds.size.y;
-		float x;
+        float paddleHeight = c.collider.bounds.size.y;
+        float x;
 
-		if (collision.gameObject.name == "PaddlePlayerOne")
+        if(c.gameObject.name == "PaddlePlayerOne")
 		{
-			x = 1;
-		}
+            x = 1;
+        }
 		else
 		{
-			x = -1;
-		}
+            x = -1;
+        }
 
-		float y = (ballPosition.y - paddlePosition.y) / paddleHeight;
+        float y = (ballPosition.y - paddlePosition.y) / paddleHeight;
 
-		this.ballMovement.IncreaseHitCounter();
-		this.ballMovement.MoveBall(new Vector2(x, y));
-	}
+        this.ballMovement.IncreaseHitCounter();
+        this.ballMovement.MoveBall(new Vector2(x, y));
 
-	void OnCollisionEnter2D(Collision2D collision)
-	{
-		if (collision.gameObject.name == "PaddlePLayerOne" || collision.gameObject.name == "PaddlePLayerTwo")
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.name == "PaddlePlayerOne" || collision.gameObject.name == "PaddlePlayerTwo" )
 		{
-			this.BounceFromPaddle(collision);
-		}
+            this.BounceFromPaddle(collision);
+        }
 		else if (collision.gameObject.name == "WallLeft")
 		{
-			Debug.Log("Collision with WallLeft");
-			this.scoreController.GoalPlayerTwo();
-			StartCoroutine(this.ballMovement.StartBall(true));
+            Debug.Log("Collision with WallLeft");
+            this.scoreController.GoalPlayerTwo();
+            StartCoroutine(this.ballMovement.StartBall(true));
 		}
 		else if (collision.gameObject.name == "WallRight")
 		{
 			Debug.Log("Collision with WallRight");
-			this.scoreController.GoalPlayerOne();
-			StartCoroutine(this.ballMovement.StartBall(false));
+            this.scoreController.GoalPlayerOne();
+            StartCoroutine(this.ballMovement.StartBall(false));
 		}
-	}
+    }
 }
