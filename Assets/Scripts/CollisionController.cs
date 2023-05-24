@@ -15,7 +15,7 @@ public class CollisionController : MonoBehaviour
         float paddleHeight = c.collider.bounds.size.y;
         float x;
 
-        if(c.gameObject.name == "PaddlePlayerOne")
+        if(c.gameObject.name == "PlayerOnePaddle")
 		{
             x = 1;
         }
@@ -33,7 +33,7 @@ public class CollisionController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.name == "PaddlePlayerOne" || collision.gameObject.name == "PaddlePlayerTwo" )
+        if(collision.gameObject.name == "PlayerOnePaddle" || collision.gameObject.name == "PlayerTwoPaddle" )
 		{
             this.BounceFromPaddle(collision);
         }
